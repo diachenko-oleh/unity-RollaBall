@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private float movementX;
     private float movementY;
-    public float speed = 1f;
+    private float speed;
     private int count;
     public int playerScore;
 
@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         count = 0;
+        speed = GameManager.speed;
         SetCountText();
         winTextObject.SetActive(false);
         objRenderer = GetComponent<Renderer>();
@@ -61,6 +62,7 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        speed = GameManager.speed;
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
         rb.AddForce(movement*speed);
         if (count >= 12)                                         //WIN
